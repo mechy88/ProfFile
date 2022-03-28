@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProfFile">
         <activity
+            android:name=".AddProfActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ProfDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
