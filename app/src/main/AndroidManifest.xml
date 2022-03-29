@@ -11,10 +11,14 @@
         android:theme="@style/Theme.ProfFile">
         <activity
             android:name=".AddProfActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".ProfDetailActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true">
