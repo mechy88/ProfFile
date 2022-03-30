@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ProfFile</string>
+    <string name="fontSizeLIst">20 sp</string>
 </resources>
