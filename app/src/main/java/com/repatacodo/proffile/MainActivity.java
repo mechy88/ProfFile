@@ -23,9 +23,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+
     }
 
     private void initializeViews(){
+        //buttons for testing navigation
+        /*
         //set up the recycler views for the profs
         RecyclerViewPlaceholder = findViewById(R.id.button);
         RecyclerViewPlaceholder.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        */
         toolbar = findViewById(R.id.main_toolbar);
     }
 

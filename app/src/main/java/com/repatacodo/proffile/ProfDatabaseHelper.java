@@ -4,8 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 
 import androidx.annotation.Nullable;
+
+import java.io.ByteArrayOutputStream;
 
 public class ProfDatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "GeneralFacultyLounge";
@@ -44,11 +47,23 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
                     "ATTENDANCE NUMERIC," +
                     "CAMERA_STATUS NUMERIC," +
                     "DESCRIPTION TEXT);");
+
+            insertProf(db,
+                    null,
+                    "lax",
+                    "Lexie",
+                    "Lexie Grey",
+                    "medicine",
+                    28,
+                    true,
+                    true,
+                    false,
+                    "Relax lang si sir");
         }
     }
 
     public static void insertProf(SQLiteDatabase db,
-                                  String picture,
+                                  byte[] picture,
                                   String teacherType,
                                   String name,
                                   String nickname,
@@ -62,7 +77,7 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
         ContentValues profValues = new ContentValues();
 
         profValues.put("PICTURE", picture);
-        profValues.put("TEACHER_TYPE", name);
+        profValues.put("TEACHER_TYPE", teacherType);
         profValues.put("NAME", name);
         profValues.put("NICKNAME", nickname);
         profValues.put("SUBJECT", subject);
@@ -72,6 +87,13 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
         profValues.put("CAMERA_STATUS", cameraStatus);
         profValues.put("DESCRIPTION", description);
 
-        db.insert("DRINK", null, profValues);
+        db.insert("PROF", null, profValues);
+    }
+
+
+    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        return outputStream.toByteArray();
     }
 }
