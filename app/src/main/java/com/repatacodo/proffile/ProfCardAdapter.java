@@ -3,6 +3,7 @@ package com.repatacodo.proffile;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +21,16 @@ class ProfCardAdapter extends RecyclerView.Adapter<ProfCardAdapter.ViewHolder>{
     String[] nickname;
     String[] subject;
     boolean[] recitation;
+    private Listener listener;
+
+    interface Listener{
+
+        void onClick(int position);
+    }
+
+    public void setListener (Listener listener){
+        this.listener = listener;
+    }
 
 
     public ProfCardAdapter (byte[][] picture,
@@ -52,15 +63,17 @@ class ProfCardAdapter extends RecyclerView.Adapter<ProfCardAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         CardView cardView = holder.cardView;
+
         ImageView imageView = (ImageView) cardView.findViewById(R.id.profImage);
-        Bitmap bmp = BitmapFactory.decodeByteArray(picture[position], 0, picture[position].length);
-        imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, imageView.getWidth(), imageView.getHeight(), false));
+        if (picture[position] != null){
+            Bitmap bmp = BitmapFactory.decodeByteArray(picture[position], 0, picture[position].length);
+            imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, imageView.getWidth(), imageView.getHeight(), false));
+        }
 
         TextView txt_teacherType = (TextView) cardView.findViewById(R.id.txt_value_teacher_type);
         txt_teacherType.setText(teacherType[position]);
-        //TODO set values to reflect database values
 
         TextView txt_fullname = (TextView) cardView.findViewById(R.id.txt_value_fullname);
         txt_fullname.setText(name[position]);
@@ -77,6 +90,16 @@ class ProfCardAdapter extends RecyclerView.Adapter<ProfCardAdapter.ViewHolder>{
 
         TextView txt_subject = (TextView) cardView.findViewById(R.id.txt_value_subject);
         txt_subject.setText(subject[position]);
+
+        //set Click functionality for recycler view items
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null){
+                    listener.onClick(holder.getAdapterPosition());
+                }
+            }
+        });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

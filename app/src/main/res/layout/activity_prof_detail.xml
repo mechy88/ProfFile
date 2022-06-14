@@ -7,6 +7,7 @@
     tools:context=".ProfDetailActivity"
     android:orientation="vertical">
 
+<!--    TODO: FIX THIS LAYOUT-->
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/detail_toolbar"
@@ -16,18 +17,185 @@
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="14"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ProfDetailActivity!"/>
+        android:layout_weight="14">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="14"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profImage_detail"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/darkSage"
+                app:strokeWidth="5dp" />
 
+            <TextView
+                android:id="@+id/txt_value_teacher_name_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teacher's Fullname"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/txt_value_teacher_nickname_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teacher's Nickname"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+            <!--        subject; age; recitation; late limit; attendance; cam-->
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_label_subject_detailActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Subject:"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/txt_value_teacher_type_detailActivity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Type"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_label_Age_detailActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Subject:"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/txt_value_Age_detailActivity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Type"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <TextView
+                android:id="@+id/txt_label_age_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age:"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+            <TextView
+                android:id="@+id/txt_label_recitation_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recitation:"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+            <TextView
+                android:id="@+id/txt_label_late_limit_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Late-Limit:"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+            <TextView
+                android:id="@+id/txt_label_attendance_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attendance:"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+            <TextView
+                android:id="@+id/txt_label_cam_detailActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cam:"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/txt_label_cam_detailiiiiiiiiiiiiiiActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cam:"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+            <TextView
+                android:id="@+id/txt_label_cam_detaiiiiiiiiiiilActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cam:"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

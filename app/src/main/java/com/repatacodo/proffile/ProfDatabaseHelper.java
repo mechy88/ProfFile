@@ -14,8 +14,8 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "GeneralFacultyLounge";
     public static final int DATABASE_VERSION = 1;
 
-    public ProfDatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public ProfDatabaseHelper(@Nullable Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -51,14 +51,58 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
             insertProf(db,
                     null,
                     "lax",
-                    "Lexie",
                     "Lexie Grey",
+                    "Lexie",
                     "medicine",
                     28,
                     true,
                     true,
                     false,
+                    "She has a photographic memory");
+            insertProf(db,
+                    null,
+                    "lax",
+                    "Meredith Grey",
+                    "Mer",
+                    "General Surgery",
+                    32,
+                    false,
+                    true,
+                    false,
+                    "Won many awards");
+            insertProf(db,
+                    null,
+                    "lax",
+                    "Derek Shephered",
+                    "Derek",
+                    "Neurosurgery",
+                    28,
+                    false,
+                    true,
+                    false,
                     "Relax lang si sir");
+            insertProf(db,
+                    null,
+                    "terror",
+                    "Paul Joshua Aman",
+                    "PJ",
+                    "Statistics",
+                    18,
+                    true,
+                    true,
+                    false,
+                    "Gets mad when you bad");
+            insertProf(db,
+                    null,
+                    "lax",
+                    "Audrey Jeanelle Aman",
+                    "Te Jeanelle",
+                    "Telecommunications Engineering",
+                    28,
+                    false,
+                    true,
+                    false,
+                    "Chill si Madam");
         }
     }
 
