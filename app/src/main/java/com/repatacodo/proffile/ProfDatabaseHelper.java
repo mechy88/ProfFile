@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 
 import androidx.annotation.Nullable;
 
@@ -42,7 +45,7 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
                     "NAME TEXT," +
                     "NICKNAME TEXT," +
                     "SUBJECT TEXT," +
-                    "AGE NUMERIC," +
+                    "AGE TEXT," +
                     "RECITATION NUMERIC," +
                     "ATTENDANCE NUMERIC," +
                     "CAMERA_STATUS NUMERIC," +
@@ -54,7 +57,7 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
                     "Lexie Grey",
                     "Lexie",
                     "medicine",
-                    28,
+                    "28",
                     true,
                     true,
                     false,
@@ -65,7 +68,7 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
                     "Meredith Grey",
                     "Mer",
                     "General Surgery",
-                    32,
+                    "32",
                     false,
                     true,
                     false,
@@ -76,7 +79,7 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
                     "Derek Shephered",
                     "Derek",
                     "Neurosurgery",
-                    28,
+                    "28",
                     false,
                     true,
                     false,
@@ -87,7 +90,7 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
                     "Paul Joshua Aman",
                     "PJ",
                     "Statistics",
-                    18,
+                    "18",
                     true,
                     true,
                     false,
@@ -98,7 +101,7 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
                     "Audrey Jeanelle Aman",
                     "Te Jeanelle",
                     "Telecommunications Engineering",
-                    28,
+                    "28",
                     false,
                     true,
                     false,
@@ -112,7 +115,7 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
                                   String name,
                                   String nickname,
                                   String subject,
-                                  int age,
+                                  String age,
                                   boolean recitation,
                                   boolean attendance,
                                   boolean cameraStatus,
@@ -140,4 +143,37 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
         return outputStream.toByteArray();
     }
+
+    public static Bitmap resizeBitmap(Bitmap bitmap) {
+        Canvas canvas = new Canvas();
+        Bitmap resizedBitmap = null;
+        if (bitmap != null) {
+            int h = bitmap.getHeight();
+            int w = bitmap.getWidth();
+            int newWidth = 1000;
+            int newHeight = 1000;
+
+            float scaleWidth = ((float) newWidth) / w;
+            float scaleHeight = ((float) newHeight) / h;
+
+            Matrix matrix = new Matrix();
+            // resize the bit map
+            matrix.preScale(scaleWidth, scaleHeight);
+
+            resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
+
+            Paint paint = new Paint();
+            paint.setAntiAlias(true);
+            paint.setFilterBitmap(true);
+            paint.setDither(true);
+
+            canvas.drawBitmap(resizedBitmap, matrix, paint);
+
+
+        }
+
+
+        return resizedBitmap;
+    }
+
 }

@@ -7,7 +7,6 @@
     tools:context=".AddProfActivity"
     android:orientation="vertical">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/add_toolbar"
         android:layout_width="match_parent"
@@ -16,18 +15,297 @@
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="14"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/textView"
+        android:layout_weight="14">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AddProfActivity!"/>
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_baseline_check_24"
+            android:onClick="onClickDone"
+            android:backgroundTint="@color/darkSage"/>
+        <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="14"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profImage_add"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/darkSage"
+                app:strokeWidth="5dp" />
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Type of Teacher"
+                        android:id="@+id/EditText_value_teacher_type_AddProfActivity"/>
+                </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Teacher's Full Name"
+                android:id="@+id/EditText_value_fullname_AddProfActivity"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Teacher's Nickname"
+                android:id="@+id/EditText_value_nickname_AddProfActivity"/>
+            <!--        subject; age; recitation; late limit; attendance; cam-->
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_label_subject_detailActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Subject:"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/EditText_value_teacher_subject_AddProfActivity"/>
+                </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_label_Age_detailActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Age:"
+                    android:inputType="number"
+                    android:hint="Number in years only"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/EditText_value_Age_AddProfActivity"/>
+                </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_label_recitation_detailActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Recitation:"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:entries="@array/RequiredSpinners"
+                        android:id="@+id/Spinner_value_Recitation_AddProfActivity"/>
+                </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_label_attendance_detailActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Attendance:"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:entries="@array/RequiredSpinners"
+                        android:id="@+id/Spinner_value_Attendance_AddProfActivity"/>
+                </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_label_cam_detailActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cam:"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:entries="@array/RequiredSpinners"
+                        android:id="@+id/Spinner_value_Camera_AddProfActivity"/>
+                </LinearLayout>
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:outlineAmbientShadowColor="@color/black"
+                android:background="@drawable/border"
+                android:layout_margin="15dp"
+                >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Cam: wio fjweoiiorejfioerjoerieriojreoi  jreio gerio j  jeoiior"
+                    android:id="@+id/EditText_value_Description_AddProfActivity"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </LinearLayout>
+    </ScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
+
+<!--<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".AddProfActivity"-->
+<!--    android:orientation="vertical">-->
+
+
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/add_toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="?attr/colorPrimary"-->
+<!--        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="14"-->
+<!--        android:orientation="vertical">-->
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="AddProfActivity!"/>-->
+
+<!--    </LinearLayout>-->
+
+
+<!--</androidx.appcompat.widget.LinearLayoutCompat>-->

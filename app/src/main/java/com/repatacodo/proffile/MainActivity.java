@@ -19,10 +19,6 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-
-    //TODO: FIGURE OUT WHY NOT ALL PROFS RENDER PROPERLY, some cardviews lack info. For context, try running the program
-    Button RecyclerViewPlaceholder;
-    Button FloatingActionButtonPlaceholder;
     Toolbar toolbar;
     RecyclerView recyclerView;
 
@@ -34,8 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Setup toolbar to work
         setSupportActionBar(toolbar);
+    }
 
+    @Override
+    protected void onStart() {
         //get arrays from database using a cursor
+        super.onStart();
+        int[] id;
         byte[][] picture;
         String[] teacherType;
         String[] name;
@@ -47,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
         SQLiteOpenHelper profDatabaseHelper = new ProfDatabaseHelper(this);
         try {
             SQLiteDatabase db = profDatabaseHelper.getReadableDatabase();
-            Cursor cursor = db.query("PROF", new String[] {"_id", "PICTURE", "TEACHER_TYPE", "NAME", "NICKNAME", "SUBJECT", "RECITATION"}, null, null, null, null, "NAME ASC");
+            Cursor cursor = db.query("PROF", new String[]{"_id", "PICTURE", "TEACHER_TYPE", "NAME", "NICKNAME", "SUBJECT", "RECITATION"}, null, null, null, null, "NAME ASC");
 
             //set the length for each array
+            id = new int[cursor.getCount()];
             picture = new byte[cursor.getCount()][];
             teacherType = new String[cursor.getCount()];
             name = new String[cursor.getCount()];
@@ -59,21 +61,20 @@ public class MainActivity extends AppCompatActivity {
 
             cursor.moveToFirst();
 
-            for(int i = 0; i < cursor.getCount(); i++){
+            for (int i = 0; i < cursor.getCount(); i++) {
                 Log.v("Checking", "Moved to " + i);
 
-                    picture[i] = cursor.getBlob(1);
-                    teacherType[i] = cursor.getString(2);
-                    name[i] = cursor.getString(3);
-                    nickname[i] = cursor.getString(4);
-                    subject[i] = cursor.getString(5);
-                    recitation[i] = cursor.getInt(6) != 0;
-                    Log.v("Checking", "Extracted Values at index " + i);
+                id[i] = cursor.getInt(0);
+                picture[i] = cursor.getBlob(1);
+                teacherType[i] = cursor.getString(2);
+                name[i] = cursor.getString(3);
+                nickname[i] = cursor.getString(4);
+                subject[i] = cursor.getString(5);
+                recitation[i] = cursor.getInt(6) != 0;
+                Log.v("Checking", "Extracted Values at index " + i);
                 cursor.moveToNext();
             }
 
-            Log.v("Checking", Arrays.toString(name));
-            //TODO: use these to get a better grasp of the errors
 
             cursor.close();
             db.close();
@@ -88,19 +89,14 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(int position) {
                     Intent intent = new Intent(MainActivity.this, ProfDetailActivity.class);
-                    intent.putExtra(ProfDetailActivity.EXTRA_PROF_ID, position);
+                    intent.putExtra(ProfDetailActivity.EXTRA_PROF_ID, id[position]);
                     startActivity(intent);
                 }
             });
 
-        } catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(this, "I hate errors, but here ya go!", Toast.LENGTH_SHORT).show();
         }
-
-
-
-
-
     }
 
     private void initializeViews(){
@@ -108,5 +104,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.profList);
     }
 
-    //sets the listener for the adapter
+    public void onClickDone(View view) {
+        Intent intent = new Intent(this, AddProfActivity.class);
+        startActivity(intent);
+    }
+
+    //TODO: THE STORED IMAGE IS TOO BIG SOMETIMES FOR CLEAR IMAGES, FIX THIS PROBLEM (for ideas, see this link: https://stackoverflow.com/questions/57107489/sqliteblobtoobigexception-row-too-big-to-fit-into-cursorwindow-while-writing-to
 }

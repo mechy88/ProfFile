@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/drawable/border.xml" value="0.12" />
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/drawable/shape.xml" value="0.21614583333333334" />
-        <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/layout/activity_add_prof.xml" value="0.2" />
-        <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/layout/activity_prof_detail.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/layout/activity_add_prof.xml" value="0.19831223628691982" />
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/layout/activity_adding_prof.xml" value="0.2" />
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/layout/activity_prof_detail.xml" value="0.25748502994011974" />
         <entry key="..\:/Users/Miguel/AndroidStudioProjects/ProfFile/app/src/main/res/layout/prof_listitem.xml" value="0.4021505376344086" />
       </map>
     </option>
