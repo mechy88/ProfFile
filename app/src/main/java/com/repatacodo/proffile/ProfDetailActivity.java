@@ -3,7 +3,6 @@ package com.repatacodo.proffile;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -15,8 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class ProfDetailActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -45,23 +42,13 @@ public class ProfDetailActivity extends AppCompatActivity {
 
         //setup toolbar to work
         setSupportActionBar(toolbar);
-
-        try{
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        } catch (Exception e){
-            Toast.makeText(ProfDetailActivity.this, "Unable to set Action Bar", Toast.LENGTH_SHORT).show();
-        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (getIntent().getExtras() != null){
             id = getIntent().getExtras().getInt(EXTRA_PROF_ID);
         }
 
-        //views in the detail activity layout
         displayInfo();
-
-
-
-
     }
 
     @Override
@@ -80,12 +67,11 @@ public class ProfDetailActivity extends AppCompatActivity {
             }
         });
 
+        //TODO: MAKE THIS BUTTON WORK
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ProfDetailActivity.this, "function coming soon!", Toast.LENGTH_SHORT).show();
-                //TODO: OVERRITE THE DATA ON THE TABLE AFTER THE CHECK IS CLICKED IN ADD PROF, WILL THINK ABOUT IF MAKE NEW ACTIVITY FOR EDITING OR JUST USE ADD PROF
-                // SO i SHOULD FIND A WAY TO PASS THE PREVIOUS DATA ON THE TABLE ONTO THE ADD PROF ACTIVITY, AND IF RECORD ALREADY EXISTS OVERRITE
             }
         });
     }

@@ -3,18 +3,16 @@ package com.repatacodo.proffile;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,7 +27,6 @@ import java.io.IOException;
 public class AddProfActivity extends AppCompatActivity {
     ImageView profProfilePic;
     Bitmap bitmap = null;
-
     Toolbar toolbar;
     EditText teacherType;
     EditText fullname;
@@ -48,11 +45,10 @@ public class AddProfActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_prof);
         initializeViews();
-
-        //make toolbar work
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Upload an image when profile pic is clicked
         profProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +70,7 @@ public class AddProfActivity extends AppCompatActivity {
             CropImage.activity()
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .setAspectRatio(1,1)
-                    .start(this);
+                    .start(AddProfActivity.this);
         }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -94,6 +90,7 @@ public class AddProfActivity extends AppCompatActivity {
                 }
                 //Save image wherever you want to save it
             }
+
         }
 
     }
@@ -112,6 +109,7 @@ public class AddProfActivity extends AppCompatActivity {
         profProfilePic = findViewById(R.id.profImage_add);
     }
 
+    //converts answer in spinners to boolean to be stored
     private boolean requiredToBoolean(Spinner s){
         String answer;
         answer = String.valueOf(s.getSelectedItem());
@@ -120,7 +118,18 @@ public class AddProfActivity extends AppCompatActivity {
 
     public void onClickDone(View view) {
 
-        if (true) {
+        final Bitmap bmap = ((BitmapDrawable)profProfilePic.getDrawable()).getBitmap();
+        Drawable myDrawable = getResources().getDrawable(R.drawable.upload_image);
+        final Bitmap templateProf = ((BitmapDrawable) myDrawable).getBitmap();
+
+        //check if all are not empty, if empty tell user to fill all fields
+        if (!(bmap.sameAs(templateProf))
+                && !(teacherType.getText().toString().matches(""))
+                && !(fullname.getText().toString().matches(""))
+                && !(nickname.getText().toString().matches(""))
+                && !(subject.getText().toString().matches(""))
+                && !(age.getText().toString().matches(""))
+        ) {
             SQLiteOpenHelper profDatabaseHelper = new ProfDatabaseHelper(this);
             try {
                 SQLiteDatabase db = profDatabaseHelper.getWritableDatabase();
@@ -134,7 +143,7 @@ public class AddProfActivity extends AppCompatActivity {
             }
             super.finish();
         } else {
-            Toast.makeText(AddProfActivity.this, "Input correct values! Like age is a number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddProfActivity.this, "Input correct values! Don't leave Blanks!", Toast.LENGTH_SHORT).show();
         }
     }
 }

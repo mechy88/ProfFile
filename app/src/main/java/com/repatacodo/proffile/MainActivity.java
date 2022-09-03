@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,11 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -27,15 +22,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeViews();
-
-        //Setup toolbar to work
         setSupportActionBar(toolbar);
     }
 
     @Override
     protected void onStart() {
-        //get arrays from database using a cursor
         super.onStart();
+        //Update info when the activity is restarted
+
+        //get arrays from database using a cursor
         int[] id;
         byte[][] picture;
         String[] teacherType;
@@ -50,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             SQLiteDatabase db = profDatabaseHelper.getReadableDatabase();
             Cursor cursor = db.query("PROF", new String[]{"_id", "PICTURE", "TEACHER_TYPE", "NAME", "NICKNAME", "SUBJECT", "RECITATION"}, null, null, null, null, "NAME ASC");
 
-            //set the length for each array
+            //Create arrays for data in recycler view, set the length for each array
             id = new int[cursor.getCount()];
             picture = new byte[cursor.getCount()][];
             teacherType = new String[cursor.getCount()];
@@ -61,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
             cursor.moveToFirst();
 
+            //Get info out of the cursor and store in arrays
             for (int i = 0; i < cursor.getCount(); i++) {
-                Log.v("Checking", "Moved to " + i);
 
                 id[i] = cursor.getInt(0);
                 picture[i] = cursor.getBlob(1);
@@ -71,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 nickname[i] = cursor.getString(4);
                 subject[i] = cursor.getString(5);
                 recitation[i] = cursor.getInt(6) != 0;
-                Log.v("Checking", "Extracted Values at index " + i);
+
                 cursor.moveToNext();
             }
 
@@ -83,8 +78,10 @@ public class MainActivity extends AppCompatActivity {
             RecyclerView.Adapter<ProfCardAdapter.ViewHolder> adapter = new ProfCardAdapter(picture, teacherType, name, nickname, subject, recitation);
             //set the adapter to the recyclerview
             recyclerView.setAdapter(adapter);
-            //then do a layout manager, but not here
+            //set the recyclerView with a LinearLayoutManager
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            //Set the click listener of the CardViews in the Recycler view to open the detail activity of the clicked Prof using the id
             ((ProfCardAdapter) adapter).setListener(new ProfCardAdapter.Listener() {
                 @Override
                 public void onClick(int position) {
@@ -95,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
         } catch (Exception e) {
-            Toast.makeText(this, "I hate errors, but here ya go!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "An error occurred, contact the developer!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -109,5 +106,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //TODO: THE STORED IMAGE IS TOO BIG SOMETIMES FOR CLEAR IMAGES, FIX THIS PROBLEM (for ideas, see this link: https://stackoverflow.com/questions/57107489/sqliteblobtoobigexception-row-too-big-to-fit-into-cursorwindow-while-writing-to
 }

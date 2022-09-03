@@ -23,6 +23,7 @@ class ProfCardAdapter extends RecyclerView.Adapter<ProfCardAdapter.ViewHolder>{
     boolean[] recitation;
     private Listener listener;
 
+    //assign the click function of cardViews when using the adapter
     interface Listener{
         void onClick(int position);
     }
@@ -67,7 +68,7 @@ class ProfCardAdapter extends RecyclerView.Adapter<ProfCardAdapter.ViewHolder>{
         ImageView imageView = (ImageView) cardView.findViewById(R.id.profImage);
         if (picture[position] != null){
             Bitmap bmp = BitmapFactory.decodeByteArray(picture[position], 0, picture[position].length);
-            imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, /*imageView.getWidth() - TODO: optimal is to use these code, but idk how without throwing an error cuz the view isn't done adjutsing yet, therefore returns zero which causes an error*/2000, /*imageView.getHeight()*/2000, false));
+            imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, 2000, 2000, false));
         }
 
         TextView txt_teacherType = (TextView) cardView.findViewById(R.id.txt_value_teacher_type);

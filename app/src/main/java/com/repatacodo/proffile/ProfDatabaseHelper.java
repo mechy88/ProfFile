@@ -53,59 +53,16 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
 
             insertProf(db,
                     null,
-                    "lax",
-                    "Lexie Grey",
-                    "Lexie",
-                    "medicine",
-                    "28",
-                    true,
-                    true,
-                    false,
-                    "She has a photographic memory");
-            insertProf(db,
-                    null,
-                    "lax",
-                    "Meredith Grey",
-                    "Mer",
-                    "General Surgery",
-                    "32",
-                    false,
-                    true,
-                    false,
-                    "Won many awards");
-            insertProf(db,
-                    null,
-                    "lax",
-                    "Derek Shephered",
-                    "Derek",
-                    "Neurosurgery",
+                    "Chill",
+                    "Roger B. Altom",
+                    "Roger",
+                    "Gaming Maths",
                     "28",
                     false,
                     true,
                     false,
-                    "Relax lang si sir");
-            insertProf(db,
-                    null,
-                    "terror",
-                    "Paul Joshua Aman",
-                    "PJ",
-                    "Statistics",
-                    "18",
-                    true,
-                    true,
-                    false,
-                    "Gets mad when you bad");
-            insertProf(db,
-                    null,
-                    "lax",
-                    "Audrey Jeanelle Aman",
-                    "Te Jeanelle",
-                    "Telecommunications Engineering",
-                    "28",
-                    false,
-                    true,
-                    false,
-                    "Chill si Madam");
+                    "He's a brilliant teacher, and he'll train you to apply math to further your gaming career");
+
         }
     }
 
@@ -137,12 +94,14 @@ public class ProfDatabaseHelper extends SQLiteOpenHelper {
         db.insert("PROF", null, profValues);
     }
 
+    //Tools to store the data:
 
     public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
         return outputStream.toByteArray();
     }
+
 
     public static Bitmap resizeBitmap(Bitmap bitmap) {
         Canvas canvas = new Canvas();
