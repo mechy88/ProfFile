@@ -94,7 +94,7 @@ public class ProfDetailActivity extends AppCompatActivity {
                 teacherName.setText(cursor.getString(3));
                 teacherNickname.setText(cursor.getString(4));
                 subject.setText(cursor.getString(5));
-                age.setText(Integer.toString(cursor.getInt(6)));
+                age.setText(cursor.getString(6));
                 if (cursor.getInt(7) != 0){
                     recitation.setText("Required");
                 } else {
